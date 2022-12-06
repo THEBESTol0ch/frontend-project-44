@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/THEBESTol0ch/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/THEBESTol0ch/frontend-project-44/actions)",
   "main": "index.js",
+  "bin": {
+  "brain-games": "bin/brain-games.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
+    "type": "module",
     "url": "git+https://github.com/THEBESTol0ch/frontend-project-44.git"
   },
   "author": "Ivan Strelkov",
@@ -17,3 +20,5 @@
   },
   "homepage": "https://github.com/THEBESTol0ch/frontend-project-44#readme"
 }
+
+
