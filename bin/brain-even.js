@@ -2,22 +2,22 @@
 
 import readlineSync from 'readline-sync';
 
-let randomNumber = 0;
-let playerAnswer = '';
-let correctAnswer = '';
-let playerStep = 0;
-let playerName = '';
+let randomNumber;
+let correctAnswer;
+let playerAnswer;
+
+function getRandomNumber(max) {
+  randomNumber = Math.floor(Math.random() * max);
+}
 
 console.log('Welcome to the Brain Games!');
-
-playerName = readlineSync.question('May I have your name? ');
+const playerName = readlineSync.question('May I have your name? ');
 console.log(`Hello, ${playerName}!`);
-
 console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
 for (let i = 0; i < 3; i += 1) {
-  randomNumber = Math.floor(Math.random() * 101);
-  if (randomNumber % 2 === 0) {
+  getRandomNumber(101);
+  if (randomNumber % 2 == 0) {
     correctAnswer = 'yes';
   } else {
     correctAnswer = 'no';
@@ -25,16 +25,16 @@ for (let i = 0; i < 3; i += 1) {
 
   console.log(`Question:  ${randomNumber}`);
   playerAnswer = readlineSync.question('Your answer: ');
-  if (playerAnswer === correctAnswer) {
+
+  if (playerAnswer == correctAnswer) {
     console.log('Correct!');
-    playerStep += 1;
-  }
-  if (playerAnswer !== correctAnswer) {
+  } else {
     console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    console.log(`Let's try again, ${playerName}!`)
     break;
   }
 }
 
-if (playerStep === 3) {
+if (playerAnswer == correctAnswer) {
   console.log(`Congratulations, ${playerName}!`);
 }

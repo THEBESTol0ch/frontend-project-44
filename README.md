@@ -6,11 +6,16 @@
 make install
 ```
 
-## Brain-games
+## Brain Games
 ```
 brain-games
 brain-even
+brain-calc
 ```
 
 ## Preview
-https://asciinema.org/connect/8ad8c052-ee2c-4a15-ba10-86f41a51834e
+brain-games -  https://asciinema.org/a/8xyTfNBPEsEn5hfGiQV473Ukr
+
+brain-even - https://asciinema.org/a/4Dol72ZWDZHP5w8O9kaltg3Dq
+
+brain-calc - https://asciinema.org/a/wKHq60wnP2n8BbR7IZ4NpyuIo
