@@ -30,7 +30,7 @@ for (let i = 0; i < 3; i += 1) {
     console.log('Correct!');
   } else {
     console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    console.log(`Let's try again, ${playerName}!`)
+    console.log(`Let's try again, ${playerName}!`);
     break;
   }
 }
