@@ -14,8 +14,8 @@ brain-calc
 ```
 
 ## Preview
-brain-games -  https://asciinema.org/a/8xyTfNBPEsEn5hfGiQV473Ukr
+brain-games - https://asciinema.org/a/mYgLLUN31xP3OAwTF5U0f0LtD
 
-brain-even - https://asciinema.org/a/4Dol72ZWDZHP5w8O9kaltg3Dq
+brain-even - https://asciinema.org/a/vF0pQ4fIxlLmRuXfFeHA2FKLz
 
-brain-calc - https://asciinema.org/a/wKHq60wnP2n8BbR7IZ4NpyuIo
+brain-calc - https://asciinema.org/a/W99Qu3JWyK1WT4klSV341Yq7i
