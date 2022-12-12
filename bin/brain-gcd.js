@@ -2,53 +2,51 @@
 
 import readlineSync from 'readline-sync';
 
-let sign;
 let randomNumber;
-let expressionSum;
+let correctAnswer;
 let playerAnswer;
+let NOD;
 
 function getRandomNumber(max) {
   randomNumber = Math.floor(Math.random() * max);
 }
 
-function getRandomSign() {
-  getRandomNumber(3);
-  if (randomNumber == 0) {
-    sign = '+';
+function GetNOD () {
+  for (var x = arguments[0], i = 1; i < arguments.length; i++) {
+    var y = arguments[i];
+    while (x && y) {
+      x > y ? x %= y : y %= x;
+    }
+    x += y;
   }
-  if (randomNumber == 1) {
-    sign = '-';
-  }
-  if (randomNumber == 2) {
-    sign = '*';
-  }
+  NOD = x;
 }
 
 console.log('Welcome to the Brain Games!');
 const playerName = readlineSync.question('May I have your name? ');
 console.log(`Hello, ${playerName}!`);
-console.log('What is the result of the expression?');
+console.log('Find the greatest common divisor of given numbers.');
 
 for (let i = 0; i < 3; i += 1) {
   getRandomNumber(31);
   const randomNumber1 = randomNumber;
   getRandomNumber(31);
   const randomNumber2 = randomNumber;
-  getRandomSign();
-  console.log(`Question:  ${randomNumber1}  ${sign}  ${randomNumber2}`);
-  expressionSum = eval(randomNumber1 + sign + randomNumber2);
+  GetNOD(randomNumber1, randomNumber2);
+  console.log(`Question: ${randomNumber1} ${randomNumber2}`);
+  correctAnswer = NOD;
 
   playerAnswer = readlineSync.question('Your answer: ');
 
-  if (playerAnswer == expressionSum) {
+  if (playerAnswer == correctAnswer) {
     console.log('Correct!');
   } else {
-    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${expressionSum}'.`);
+    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
     console.log(`Let's try again, ${playerName}!`);
     break;
   }
 }
 
-if (playerAnswer == expressionSum) {
+if (playerAnswer == correctAnswer) {
   console.log(`Congratulations, ${playerName}!`);
 }
