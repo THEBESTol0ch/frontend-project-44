@@ -1,25 +1,15 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
+import { create, all } from 'mathjs';
 
+const math = create(all);
 let randomNumber;
-let correctAnswer;
 let playerAnswer;
-let NOD;
+let GCD;
 
 function getRandomNumber(max) {
   randomNumber = Math.floor(Math.random() * max);
-}
-
-function GetNOD () {
-  for (var x = arguments[0], i = 1; i < arguments.length; i++) {
-    var y = arguments[i];
-    while (x && y) {
-      x > y ? x %= y : y %= x;
-    }
-    x += y;
-  }
-  NOD = x;
 }
 
 console.log('Welcome to the Brain Games!');
@@ -32,21 +22,20 @@ for (let i = 0; i < 3; i += 1) {
   const randomNumber1 = randomNumber;
   getRandomNumber(31);
   const randomNumber2 = randomNumber;
-  GetNOD(randomNumber1, randomNumber2);
+  GCD = math.gcd(randomNumber1, randomNumber2);
   console.log(`Question: ${randomNumber1} ${randomNumber2}`);
-  correctAnswer = NOD;
 
   playerAnswer = readlineSync.question('Your answer: ');
 
-  if (playerAnswer == correctAnswer) {
+  if (playerAnswer == GCD) {
     console.log('Correct!');
   } else {
-    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${GCD}'.`);
     console.log(`Let's try again, ${playerName}!`);
     break;
   }
 }
 
-if (playerAnswer == correctAnswer) {
+if (playerAnswer == GCD) {
   console.log(`Congratulations, ${playerName}!`);
 }

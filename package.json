@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/THEBESTol0ch/frontend-project-44#readme",
   "dependencies": {
+    "mathjs": "^11.5.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
