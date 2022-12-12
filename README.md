@@ -12,6 +12,7 @@ brain-games
 brain-even
 brain-calc
 brain-gcd
+brain-progression
 ```
 
 ## Preview
@@ -22,3 +23,5 @@ brain-even - https://asciinema.org/a/vF0pQ4fIxlLmRuXfFeHA2FKLz
 brain-calc - https://asciinema.org/a/nmPQUiDcx2HGpgNS3mbkKvpDp
 
 brain-gcd - https://asciinema.org/a/Fj99UhFi1N6HoVQTheaKzgvnQ
+
+brain-progression - https://asciinema.org/a/1SO7G20QFpvcbryW8qhVi5tDw
