@@ -13,6 +13,7 @@ brain-even
 brain-calc
 brain-gcd
 brain-progression
+brain-prime
 ```
 
 ## Preview
@@ -25,3 +26,5 @@ brain-calc - https://asciinema.org/a/nmPQUiDcx2HGpgNS3mbkKvpDp
 brain-gcd - https://asciinema.org/a/Fj99UhFi1N6HoVQTheaKzgvnQ
 
 brain-progression - https://asciinema.org/a/1SO7G20QFpvcbryW8qhVi5tDw
+
+brain-prime - https://asciinema.org/a/NL0oUxNzUz6YtxQUuhDLOiYyo
