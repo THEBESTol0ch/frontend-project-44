@@ -1,25 +1,17 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
+import { randomNumber, correctAnswer, playerAnswer, getRandomNumber, playerMeet, playerAnswerCheck } from '../brain.js';
 
 let AP;
 let APElement;
 let APstep;
 let Arr;
-let randomNumber;
-let correctAnswer;
-let playerAnswer;
 
-function getRandomNumber(max) {
-  randomNumber = Math.floor(Math.random() * max);
-}
-
-console.log('Welcome to the Brain Games!');
-const playerName = readlineSync.question('May I have your name? ');
-console.log(`Hello, ${playerName}!`);
+playerMeet();
 console.log('What number is missing in the progression?');
 
-for (let i = 0; i < 3; i += 1) {
+for (let i = 0; i < 3 && playerAnswer !== 'incorrect'; i += 1) {
   getRandomNumber(11);
   APstep = randomNumber;
   getRandomNumber(11);
@@ -40,16 +32,5 @@ for (let i = 0; i < 3; i += 1) {
   console.log(`Question: ${AP}`);
 
   playerAnswer = readlineSync.question('Your answer: ');
-
-  if (playerAnswer == correctAnswer) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    console.log(`Let's try again, ${playerName}!`);
-    break;
-  }
-}
-
-if (playerAnswer == correctAnswer) {
-  console.log(`Congratulations, ${playerName}!`);
+  playerAnswerCheck();
 }

@@ -1,15 +1,10 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
+import { randomNumber, correctAnswer, playerAnswer, getRandomNumber, playerMeet, playerAnswerCheck } from '../brain.js';
 
 let sign;
-let randomNumber;
 let expressionSum;
-let playerAnswer;
-
-function getRandomNumber(max) {
-  randomNumber = Math.floor(Math.random() * max);
-}
 
 function getRandomSign() {
   getRandomNumber(3);
@@ -24,12 +19,10 @@ function getRandomSign() {
   }
 }
 
-console.log('Welcome to the Brain Games!');
-const playerName = readlineSync.question('May I have your name? ');
-console.log(`Hello, ${playerName}!`);
+playerMeet();
 console.log('What is the result of the expression?');
 
-for (let i = 0; i < 3; i += 1) {
+for (let i = 0; i < 3 && playerAnswer !== 'incorrect'; i += 1) {
   getRandomNumber(31);
   const randomNumber1 = randomNumber;
   getRandomNumber(31);
@@ -37,18 +30,8 @@ for (let i = 0; i < 3; i += 1) {
   getRandomSign();
   console.log(`Question:  ${randomNumber1}  ${sign}  ${randomNumber2}`);
   expressionSum = eval(randomNumber1 + sign + randomNumber2);
+  correctAnswer = expressionSum;
 
   playerAnswer = readlineSync.question('Your answer: ');
-
-  if (playerAnswer == expressionSum) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${expressionSum}'.`);
-    console.log(`Let's try again, ${playerName}!`);
-    break;
-  }
-}
-
-if (playerAnswer == expressionSum) {
-  console.log(`Congratulations, ${playerName}!`);
+  playerAnswerCheck();
 }
