@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
-import { randomNumber, correctAnswer, playerAnswer, getRandomNumber, playerMeet, playerAnswerCheck } from '../brain.js';
+import { playerMeet, checkPlayerAnswer } from '../src/index.js';
 
 let sign;
 let expressionSum;
+let randomNumber;
+let correctAnswer;
+let playerAnswer;
+const gameDescription = 'What is the result of the expression?';
 
 function getRandomSign() {
   getRandomNumber(3);
@@ -19,10 +23,11 @@ function getRandomSign() {
   }
 }
 
-playerMeet();
-console.log('What is the result of the expression?');
+function getRandomNumber(max) {
+  randomNumber = Math.floor(Math.random() * max);
+}
 
-for (let i = 0; i < 3 && playerAnswer !== 'incorrect'; i += 1) {
+function gameLogic() {
   getRandomNumber(31);
   const randomNumber1 = randomNumber;
   getRandomNumber(31);
@@ -31,7 +36,12 @@ for (let i = 0; i < 3 && playerAnswer !== 'incorrect'; i += 1) {
   console.log(`Question:  ${randomNumber1}  ${sign}  ${randomNumber2}`);
   expressionSum = eval(randomNumber1 + sign + randomNumber2);
   correctAnswer = expressionSum;
-
   playerAnswer = readlineSync.question('Your answer: ');
-  playerAnswerCheck();
+}
+
+playerMeet();
+console.log(gameDescription);
+for (let i = 0; i < 3 && playerAnswer == correctAnswer; i += 1) {
+gameLogic();
+checkPlayerAnswer(playerAnswer, correctAnswer, i);
 }

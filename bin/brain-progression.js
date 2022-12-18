@@ -1,17 +1,22 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
-import { randomNumber, correctAnswer, playerAnswer, getRandomNumber, playerMeet, playerAnswerCheck } from '../brain.js';
+import { playerMeet, checkPlayerAnswer } from '../src/index.js';
 
 let AP;
 let APElement;
 let APstep;
 let Arr;
+let randomNumber;
+let correctAnswer;
+let playerAnswer;
+const gameDescription = 'What number is missing in the progression?';
 
-playerMeet();
-console.log('What number is missing in the progression?');
+function getRandomNumber(max) {
+    randomNumber = Math.floor(Math.random() * max);
+}
 
-for (let i = 0; i < 3 && playerAnswer !== 'incorrect'; i += 1) {
+function gameLogic() {
   getRandomNumber(11);
   APstep = randomNumber;
   getRandomNumber(11);
@@ -30,7 +35,12 @@ for (let i = 0; i < 3 && playerAnswer !== 'incorrect'; i += 1) {
     AP = (`${AP} ${item}`);
   }
   console.log(`Question: ${AP}`);
-
   playerAnswer = readlineSync.question('Your answer: ');
-  playerAnswerCheck();
+}
+
+playerMeet();
+console.log(gameDescription);
+for (let i = 0; i < 3 && playerAnswer == correctAnswer; i += 1) {
+  gameLogic();
+  checkPlayerAnswer(playerAnswer, correctAnswer, i);
 }
