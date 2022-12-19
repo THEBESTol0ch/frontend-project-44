@@ -31,7 +31,7 @@ function getCorrectAnswerAndGameQuestions() {
   expressionSum = eval(randomNumber1 + sign + randomNumber2);
   const correctAnswer = expressionSum;
   correctAnswers.push(correctAnswer);
-  const gameQuestion = `${randomNumber1}  ${sign}  ${randomNumber2}`;
+  const gameQuestion = `${randomNumber1} ${sign} ${randomNumber2}`;
   gameQuestions.push(gameQuestion);
 }
 
