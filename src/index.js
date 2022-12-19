@@ -4,7 +4,8 @@ let playerName;
 const totalGameQuestions = 3;
 
 function getRandomNumber(randomNumber, max) {
-  return randomNumber = Math.floor(Math.random() * max);
+  randomNumber = Math.floor(Math.random() * max);
+  return randomNumber;
 }
 
 function playerMeet() {
@@ -19,8 +20,8 @@ function startGame(gameDescription, correctAnswers, gameQuestions) {
 
   for (let i = 0; i < totalGameQuestions; i += 1) {
     console.log(`Question:  ${gameQuestions[i]}`);
-    let playerAnswer = readlineSync.question('Your answer: ');
-    
+    const playerAnswer = readlineSync.question('Your answer: ');
+
     if (playerAnswer == correctAnswers[i]) {
       console.log('Correct!');
       if (i == 2) {
@@ -34,4 +35,6 @@ function startGame(gameDescription, correctAnswers, gameQuestions) {
   }
 }
 
-export { startGame, getRandomNumber, totalGameQuestions, playerMeet };
+export {
+  startGame, getRandomNumber, totalGameQuestions, playerMeet,
+};

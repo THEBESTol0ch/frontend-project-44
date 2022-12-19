@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js'
+import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js';
 
 let AP;
 let APElement;
 let APstep;
 let Arr;
 let randomNumber;
-let correctAnswers = [];
-let gameQuestions = [];
+const correctAnswers = [];
+const gameQuestions = [];
 const gameDescription = 'What number is missing in the progression?';
 
 function getCorrectAnswerAndGameQuestions() {
@@ -23,14 +23,14 @@ function getCorrectAnswerAndGameQuestions() {
   }
   Arr = AP.split(' ');
   randomNumber = getRandomNumber(randomNumber, 10);
-  let correctAnswer = Arr[randomNumber];
+  const correctAnswer = Arr[randomNumber];
   correctAnswers.push(correctAnswer);
   Arr[randomNumber] = '..';
   AP = '';
   for (const item of Arr) {
     AP = (`${AP} ${item}`);
   }
-  let gameQuestion = AP;
+  const gameQuestion = AP;
   gameQuestions.push(gameQuestion);
 }
 

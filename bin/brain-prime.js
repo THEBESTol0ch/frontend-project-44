@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js'
+import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js';
 
 const primeNumbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
 let randomNumber;
-let correctAnswers = [];
-let gameQuestions = [];
+const correctAnswers = [];
+const gameQuestions = [];
 const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 function getCorrectAnswerAndGameQuestions() {
@@ -20,7 +20,7 @@ function getCorrectAnswerAndGameQuestions() {
     }
   }
   correctAnswers.push(correctAnswer);
-  let gameQuestion = randomNumber;
+  const gameQuestion = randomNumber;
   gameQuestions.push(gameQuestion);
 }
 

@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 import { create, all } from 'mathjs';
-import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js'
+import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js';
 
 const math = create(all);
 let GCD;
 let randomNumber;
-let correctAnswers = [];
-let gameQuestions = [];
+const correctAnswers = [];
+const gameQuestions = [];
 const gameDescription = 'Find the greatest common divisor of given numbers.';
 
 function getCorrectAnswerAndGameQuestions() {
@@ -16,9 +16,9 @@ function getCorrectAnswerAndGameQuestions() {
   randomNumber = getRandomNumber(randomNumber, 31);
   const randomNumber2 = randomNumber;
   GCD = math.gcd(randomNumber1, randomNumber2);
-  let correctAnswer = GCD;
+  const correctAnswer = GCD;
   correctAnswers.push(correctAnswer);
-  let gameQuestion = `${randomNumber1} ${randomNumber2}`;
+  const gameQuestion = `${randomNumber1} ${randomNumber2}`;
   gameQuestions.push(gameQuestion);
 }
 

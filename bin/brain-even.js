@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js'
+import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js';
 
 let randomNumber;
-let correctAnswers = [];
-let gameQuestions = [];
+const correctAnswers = [];
+const gameQuestions = [];
 const gameDescription = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 function getCorrectAnswerAndGameQuestions() {
@@ -16,7 +16,7 @@ function getCorrectAnswerAndGameQuestions() {
     correctAnswer = 'no';
   }
   correctAnswers.push(correctAnswer);
-  let gameQuestion = randomNumber;
+  const gameQuestion = randomNumber;
   gameQuestions.push(gameQuestion);
 }
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js'
+import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js';
 
 let sign;
 let expressionSum;
 let randomNumber;
-let correctAnswers = [];
-let gameQuestions = [];
+const correctAnswers = [];
+const gameQuestions = [];
 const gameDescription = 'What is the result of the expression?';
 
 function getRandomSign() {
@@ -29,9 +29,9 @@ function getCorrectAnswerAndGameQuestions() {
   const randomNumber2 = randomNumber;
   getRandomSign();
   expressionSum = eval(randomNumber1 + sign + randomNumber2);
-  let correctAnswer = expressionSum;
+  const correctAnswer = expressionSum;
   correctAnswers.push(correctAnswer);
-  let gameQuestion = `${randomNumber1}  ${sign}  ${randomNumber2}`;
+  const gameQuestion = `${randomNumber1}  ${sign}  ${randomNumber2}`;
   gameQuestions.push(gameQuestion);
 }
 
