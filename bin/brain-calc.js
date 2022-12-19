@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
-import { playerMeet, checkPlayerAnswer } from '../src/index.js';
+import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js'
 
 let sign;
 let expressionSum;
 let randomNumber;
-let correctAnswer;
-let playerAnswer;
+let correctAnswers = [];
+let gameQuestions = [];
 const gameDescription = 'What is the result of the expression?';
 
 function getRandomSign() {
-  getRandomNumber(3);
+  randomNumber = getRandomNumber(randomNumber, 3);
   if (randomNumber == 0) {
     sign = '+';
   }
@@ -23,25 +22,21 @@ function getRandomSign() {
   }
 }
 
-function getRandomNumber(max) {
-  randomNumber = Math.floor(Math.random() * max);
-}
-
-function gameLogic() {
-  getRandomNumber(31);
+function getCorrectAnswerAndGameQuestions() {
+  randomNumber = getRandomNumber(randomNumber, 31);
   const randomNumber1 = randomNumber;
-  getRandomNumber(31);
+  randomNumber = getRandomNumber(randomNumber, 31);
   const randomNumber2 = randomNumber;
   getRandomSign();
-  console.log(`Question:  ${randomNumber1}  ${sign}  ${randomNumber2}`);
   expressionSum = eval(randomNumber1 + sign + randomNumber2);
-  correctAnswer = expressionSum;
-  playerAnswer = readlineSync.question('Your answer: ');
+  let correctAnswer = expressionSum;
+  correctAnswers.push(correctAnswer);
+  let gameQuestion = `${randomNumber1}  ${sign}  ${randomNumber2}`;
+  gameQuestions.push(gameQuestion);
 }
 
-playerMeet();
-console.log(gameDescription);
-for (let i = 0; i < 3 && playerAnswer == correctAnswer; i += 1) {
-gameLogic();
-checkPlayerAnswer(playerAnswer, correctAnswer, i);
+for (let i = 0; i < totalGameQuestions; i += 1) {
+  getCorrectAnswerAndGameQuestions();
 }
+
+startGame(gameDescription, correctAnswers, gameQuestions);

@@ -1,25 +1,20 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
-import { playerMeet, checkPlayerAnswer } from '../src/index.js';
+import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js'
 
 let AP;
 let APElement;
 let APstep;
 let Arr;
 let randomNumber;
-let correctAnswer;
-let playerAnswer;
+let correctAnswers = [];
+let gameQuestions = [];
 const gameDescription = 'What number is missing in the progression?';
 
-function getRandomNumber(max) {
-    randomNumber = Math.floor(Math.random() * max);
-}
-
-function gameLogic() {
-  getRandomNumber(11);
+function getCorrectAnswerAndGameQuestions() {
+  randomNumber = getRandomNumber(randomNumber, 11);
   APstep = randomNumber;
-  getRandomNumber(11);
+  randomNumber = getRandomNumber(randomNumber, 11);
   APElement = randomNumber;
   AP = APElement;
   for (let j = 0; j < 9; j += 1) {
@@ -27,20 +22,20 @@ function gameLogic() {
     AP = (`${AP} ${APElement}`);
   }
   Arr = AP.split(' ');
-  getRandomNumber(10);
-  correctAnswer = Arr[randomNumber];
+  randomNumber = getRandomNumber(randomNumber, 10);
+  let correctAnswer = Arr[randomNumber];
+  correctAnswers.push(correctAnswer);
   Arr[randomNumber] = '..';
   AP = '';
   for (const item of Arr) {
     AP = (`${AP} ${item}`);
   }
-  console.log(`Question: ${AP}`);
-  playerAnswer = readlineSync.question('Your answer: ');
+  let gameQuestion = AP;
+  gameQuestions.push(gameQuestion);
 }
 
-playerMeet();
-console.log(gameDescription);
-for (let i = 0; i < 3 && playerAnswer == correctAnswer; i += 1) {
-  gameLogic();
-  checkPlayerAnswer(playerAnswer, correctAnswer, i);
+for (let i = 0; i < totalGameQuestions; i += 1) {
+  getCorrectAnswerAndGameQuestions();
 }
+
+startGame(gameDescription, correctAnswers, gameQuestions);

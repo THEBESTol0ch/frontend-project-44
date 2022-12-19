@@ -1,22 +1,16 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
-import { playerMeet, checkPlayerAnswer } from '../src/index.js';
+import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js'
 
 const primeNumbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
 let randomNumber;
-let correctAnswer;
-let playerAnswer;
+let correctAnswers = [];
+let gameQuestions = [];
 const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-function getRandomNumber(max) {
-    randomNumber = Math.floor(Math.random() * max);
-}
-
-function gameLogic() {
-  getRandomNumber(102);
-  console.log(`Question:  ${randomNumber}`);
-  playerAnswer = readlineSync.question('Your answer: ');
+function getCorrectAnswerAndGameQuestions() {
+  randomNumber = getRandomNumber(randomNumber, 102);
+  let correctAnswer;
   for (const item of primeNumbers) {
     if (randomNumber == item) {
       correctAnswer = 'yes';
@@ -25,11 +19,13 @@ function gameLogic() {
       correctAnswer = 'no';
     }
   }
+  correctAnswers.push(correctAnswer);
+  let gameQuestion = randomNumber;
+  gameQuestions.push(gameQuestion);
 }
 
-playerMeet();
-console.log(gameDescription);
-for (let i = 0; i < 3 && playerAnswer == correctAnswer; i += 1) {
-  gameLogic();
-  checkPlayerAnswer(playerAnswer, correctAnswer, i);
+for (let i = 0; i < totalGameQuestions; i += 1) {
+  getCorrectAnswerAndGameQuestions();
 }
+
+startGame(gameDescription, correctAnswers, gameQuestions);

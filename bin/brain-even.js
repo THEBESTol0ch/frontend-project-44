@@ -1,31 +1,27 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
-import { playerMeet, checkPlayerAnswer } from '../src/index.js';
+import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js'
 
 let randomNumber;
-let correctAnswer;
-let playerAnswer;
+let correctAnswers = [];
+let gameQuestions = [];
 const gameDescription = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-function getRandomNumber(max) {
-    randomNumber = Math.floor(Math.random() * max);
-}
-
-function gameLogic() {
-  getRandomNumber(101);
+function getCorrectAnswerAndGameQuestions() {
+  randomNumber = getRandomNumber(randomNumber, 101);
+  let correctAnswer;
   if (randomNumber % 2 == 0) {
     correctAnswer = 'yes';
   } else {
     correctAnswer = 'no';
   }
-  console.log(`Question:  ${randomNumber}`);
-  playerAnswer = readlineSync.question('Your answer: ');
+  correctAnswers.push(correctAnswer);
+  let gameQuestion = randomNumber;
+  gameQuestions.push(gameQuestion);
 }
 
-playerMeet();
-console.log(gameDescription);
-for (let i = 0; i < 3 && playerAnswer == correctAnswer; i += 1) {
-  gameLogic();
-  checkPlayerAnswer(playerAnswer, correctAnswer, i);
+for (let i = 0; i < totalGameQuestions; i += 1) {
+  getCorrectAnswerAndGameQuestions();
 }
+
+startGame(gameDescription, correctAnswers, gameQuestions);
