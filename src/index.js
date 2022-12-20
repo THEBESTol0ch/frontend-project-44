@@ -20,7 +20,7 @@ function startGame(gameDescription, correctAnswers, gameQuestions) {
 
   for (let i = 0; i < totalGameQuestions; i += 1) {
     console.log(`Question: ${gameQuestions[i]}`);
-    const playerAnswer = readlineSync.question('Your answer: ');
+    const playerAnswer = readlineSync.question('');
 
     if (playerAnswer == correctAnswers[i]) {
       console.log('Correct!');
