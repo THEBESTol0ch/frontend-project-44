@@ -1,5 +1,5 @@
 import { create, all } from 'mathjs';
-import { totalGameQuestions, getRandomNumber } from "../index.js";
+import { totalGameQuestions, getRandomNumber } from '../index.js';
 
 const math = create(all);
 let GCD;

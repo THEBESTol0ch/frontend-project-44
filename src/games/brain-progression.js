@@ -1,4 +1,4 @@
-import { totalGameQuestions, getRandomNumber } from "../index.js";
+import { totalGameQuestions, getRandomNumber } from '../index.js';
 
 let AP;
 let APElement;
