@@ -1,41 +1,6 @@
 #!/usr/bin/env node
 
-import { startGame, getRandomNumber, totalGameQuestions } from '../src/index.js';
-
-let AP;
-let APElement;
-let APstep;
-let Arr;
-let randomNumber;
-const correctAnswers = [];
-const gameQuestions = [];
-const gameDescription = 'What number is missing in the progression?';
-
-function getCorrectAnswerAndGameQuestions() {
-  randomNumber = getRandomNumber(randomNumber, 11);
-  APstep = randomNumber;
-  randomNumber = getRandomNumber(randomNumber, 11);
-  APElement = randomNumber;
-  AP = APElement;
-  for (let j = 0; j < 9; j += 1) {
-    APElement += APstep;
-    AP = (`${AP} ${APElement}`);
-  }
-  Arr = AP.split(' ');
-  randomNumber = getRandomNumber(randomNumber, 10);
-  const correctAnswer = Arr[randomNumber];
-  correctAnswers.push(correctAnswer);
-  Arr[randomNumber] = '..';
-  AP = '';
-  for (const item of Arr) {
-    AP = (`${AP} ${item}`);
-  }
-  const gameQuestion = AP;
-  gameQuestions.push(gameQuestion);
-}
-
-for (let i = 0; i < totalGameQuestions; i += 1) {
-  getCorrectAnswerAndGameQuestions();
-}
+import { startGame } from '../src/index.js';
+import { gameDescription, correctAnswers, gameQuestions } from '../src/games/brain-progression.js';
 
 startGame(gameDescription, correctAnswers, gameQuestions);
