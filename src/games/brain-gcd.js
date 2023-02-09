@@ -1,27 +1,20 @@
-import { create, all } from 'mathjs';
-import { totalGameQuestions, getRandomNumber } from '../index.js';
+import { askQuestion, randomInteger, createNewGame } from '../index.js';
 
-const math = create(all);
-let GCD;
-let randomNumber;
-const correctAnswers = [];
-const gameQuestions = [];
+const getGcd = (number1, number2) => {
+  if (number2 > number1) return getGcd(number2, number1);
+  if (!number2) return number1;
+  return getGcd(number2, number1 % number2);
+};
+
 const gameDescription = 'Find the greatest common divisor of given numbers.';
 
-function getCorrectAnswerAndGameQuestions() {
-  randomNumber = getRandomNumber(randomNumber, 31);
-  const randomNumber1 = randomNumber;
-  randomNumber = getRandomNumber(randomNumber, 31);
-  const randomNumber2 = randomNumber;
-  GCD = math.gcd(randomNumber1, randomNumber2);
-  const correctAnswer = GCD;
-  correctAnswers.push(correctAnswer);
-  const gameQuestion = `${randomNumber1} ${randomNumber2}`;
-  gameQuestions.push(gameQuestion);
-}
+const gameLauncher = createNewGame(() => {
+  const firstNumber = randomInteger(1, 100);
+  const secondNumber = randomInteger(1, 100);
+  const calculateAnswer = getGcd(firstNumber, secondNumber);
+  const userAnswer = askQuestion(`Question: ${firstNumber} ${secondNumber}`);
 
-for (let i = 0; i < totalGameQuestions; i += 1) {
-  getCorrectAnswerAndGameQuestions();
-}
+  return [userAnswer, calculateAnswer];
+}, gameDescription);
 
-export { gameDescription, correctAnswers, gameQuestions };
+export default gameLauncher;

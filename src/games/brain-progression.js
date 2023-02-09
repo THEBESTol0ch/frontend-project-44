@@ -1,39 +1,28 @@
-import { totalGameQuestions, getRandomNumber } from '../index.js';
+import { askQuestion, randomInteger, createNewGame } from '../index.js';
 
-let AP;
-let APElement;
-let APstep;
-let Arr;
-let randomNumber;
-const correctAnswers = [];
-const gameQuestions = [];
+const getProgression = (firstNumber, step) => {
+  const progressionLength = randomInteger(6, 15);
+  const progression = [];
+  for (let i = 0; i < progressionLength; i += 1) {
+    progression.push(firstNumber + step * i);
+  }
+  return progression;
+};
+
 const gameDescription = 'What number is missing in the progression?';
 
-function getCorrectAnswerAndGameQuestions() {
-  randomNumber = getRandomNumber(randomNumber, 11);
-  APstep = randomNumber;
-  randomNumber = getRandomNumber(randomNumber, 11);
-  APElement = randomNumber;
-  AP = APElement;
-  for (let j = 0; j < 9; j += 1) {
-    APElement += APstep;
-    AP = (`${AP} ${APElement}`);
-  }
-  Arr = AP.split(' ');
-  randomNumber = getRandomNumber(randomNumber, 10);
-  const correctAnswer = Arr[randomNumber];
-  correctAnswers.push(correctAnswer);
-  Arr[randomNumber] = '..';
-  AP = '';
-  for (const item of Arr) {
-    AP = (`${AP} ${item}`);
-  }
-  const gameQuestion = AP;
-  gameQuestions.push(gameQuestion);
-}
+const gameLauncher = createNewGame(() => {
+  const firstNumber = randomInteger(0, 50);
+  const step = randomInteger(2, 8);
+  const progression = getProgression(firstNumber, step);
+  const randomIndex = randomInteger(0, progression.length - 1);
+  const calculateAnswer = progression[randomIndex];
+  progression[randomIndex] = '..';
+  const gameNumber = progression.join(' ');
 
-for (let i = 0; i < totalGameQuestions; i += 1) {
-  getCorrectAnswerAndGameQuestions();
-}
+  const userAnswer = askQuestion(`Question: ${gameNumber}`);
 
-export { gameDescription, correctAnswers, gameQuestions };
+  return [userAnswer, calculateAnswer];
+}, gameDescription);
+
+export default gameLauncher;

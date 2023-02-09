@@ -1,29 +1,23 @@
-import { totalGameQuestions, getRandomNumber } from '../index.js';
+import { askQuestion, randomInteger, createNewGame } from '../index.js';
 
-const primeNumbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
-let randomNumber;
-const correctAnswers = [];
-const gameQuestions = [];
-const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-
-function getCorrectAnswerAndGameQuestions() {
-  randomNumber = getRandomNumber(randomNumber, 102);
-  let correctAnswer;
-  for (const item of primeNumbers) {
-    if (randomNumber == item) {
-      correctAnswer = 'yes';
-      break;
-    } else {
-      correctAnswer = 'no';
+const isPrime = (number) => {
+  for (let i = 2; i < number; i += 1) {
+    if (number < 2) return false;
+    if (number % i === 0) {
+      return false;
     }
   }
-  correctAnswers.push(correctAnswer);
-  const gameQuestion = randomNumber;
-  gameQuestions.push(gameQuestion);
-}
+  return true;
+};
 
-for (let i = 0; i < totalGameQuestions; i += 1) {
-  getCorrectAnswerAndGameQuestions();
-}
+const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-export { gameDescription, correctAnswers, gameQuestions };
+const gameLauncher = createNewGame(() => {
+  const randomNumber = randomInteger(1, 100);
+  const calculateAnswer = isPrime(randomNumber) ? 'yes' : 'no';
+  const userAnswer = askQuestion(`Question: ${randomNumber}`);
+
+  return [userAnswer, calculateAnswer];
+}, gameDescription);
+
+export default gameLauncher;

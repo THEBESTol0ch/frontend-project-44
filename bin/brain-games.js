@@ -1,5 +1,5 @@
 #!/usr/bin/env node
+import welcomeUser from '../src/index.js';
 
-import { playerMeet } from '../src/index.js';
-
-playerMeet();
+console.log('Welcome to the Brain Games!');
+welcomeUser();
